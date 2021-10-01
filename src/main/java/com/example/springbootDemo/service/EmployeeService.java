@@ -1,5 +1,6 @@
 package com.example.springbootDemo.service;
 
+import com.example.springbootDemo.controller.dto.EmployeeDto;
 import com.example.springbootDemo.controller.dto.EmployeeRequest;
 import com.example.springbootDemo.controller.dto.EmployeeResponse;
 import com.example.springbootDemo.entity.Employee;
@@ -51,6 +52,20 @@ public class EmployeeService {
                 .name(employee.getName())
                 .age(employee.getAge())
                 .gender(employee.getGender())
+                .build();
+    }
+
+    public EmployeeResponse addEmployee(EmployeeDto employeeDto) {
+        Employee employee = new Employee();
+        employee.setName(employeeDto.getName());
+        employee.setAge(employeeDto.getAge());
+        employee.setGender(employeeDto.getGender());
+        Employee saved = employeeRepository.save(employee);
+        return EmployeeResponse.builder()
+                .id(saved.getId())
+                .name(saved.getName())
+                .age(saved.getAge())
+                .gender(saved.getGender())
                 .build();
     }
 }
