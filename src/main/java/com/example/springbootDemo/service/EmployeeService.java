@@ -68,4 +68,10 @@ public class EmployeeService {
                 .gender(saved.getGender())
                 .build();
     }
+
+    public void deleteEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("can not found this employee"));
+        employeeRepository.deleteById(employee.getId());
+    }
 }

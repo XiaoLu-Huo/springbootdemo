@@ -38,4 +38,11 @@ public class GlobalExceptionHandler {
         ErrorResult errorResult = new ErrorResult(status.value(), message);
         return ResponseEntity.status(status).body(errorResult);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResult> handle(Exception ex) {
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        ErrorResult errorResult = new ErrorResult(status.value(), ex.getMessage());
+        return ResponseEntity.status(status).body(errorResult);
+    }
 }
