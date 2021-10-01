@@ -42,4 +42,15 @@ public class EmployeeService {
                 .gender(employee.getGender())
                 .build();
     }
+
+    public EmployeeResponse findEmployeeById(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("can not found this employee"));
+        return EmployeeResponse.builder()
+                .id(id)
+                .name(employee.getName())
+                .age(employee.getAge())
+                .gender(employee.getGender())
+                .build();
+    }
 }

@@ -29,6 +29,11 @@ public class EmployeeController {
         return employeeService.findAll();
     }
 
+    @GetMapping("/employee/{id}")
+    public EmployeeResponse findEmployeeById(@PathVariable Long id){
+        return employeeService.findEmployeeById(id);
+    }
+
     @PostMapping("/employee/{id}")
     public EmployeeResponse update(@RequestBody EmployeeRequest employeeRequest, @PathVariable Long id) {
         return  employeeService.update(employeeRequest,id);
